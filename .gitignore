@@ -1,0 +1,8 @@
+paper/*.pdf
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+__pycache__/
