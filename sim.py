@@ -20,14 +20,15 @@ def symbolic_checks():
     foc = sp.diff(U, e)
     expected = DX*G(X)*lam*sp.Subs(sp.Derivative(G(sp.Symbol("z")), sp.Symbol("z")), sp.Symbol("z"), Y) - e**(a-1)
     assert sp.simplify(foc-expected) == 0
-    xbar = sp.Function("xbar")(tau)
-    ybar = sp.Function("ybar")(tau)
-    DG, GX, gY = sp.symbols("Delta_G G_X g_Y", positive=True)
-    welfare = sp.Function("G")(xbar)*DG + sp.Function("G")(xbar)*sp.Function("G")(ybar)*DX - e**a/a
-    # The paper's envelope decomposition, entered directly and checked algebraically.
-    direct = gY*GX*DX
-    indirect = sp.Symbol("dGX_dtau", negative=True)*(DG+sp.Symbol("G_Y", positive=True)*DX)
-    assert sp.expand(direct+indirect-direct-indirect) == 0
+    DG, GX, GY, gX, gY, Xp, ep = sp.symbols(
+        "Delta_G G_X G_Y g_X g_Y Xprime eprime", real=True
+    )
+    # Total derivative before imposing the private FOC. Y'=1+lambda*e'.
+    total = gX*Xp*(DG+GY*DX) + GX*DX*gY*(1+lam*ep) - e**(a-1)*ep
+    foc_rhs = DX*GX*lam*gY
+    envelope = sp.simplify(total.subs(e**(a-1), foc_rhs))
+    expected_envelope = GX*DX*gY + gX*Xp*(DG+GY*DX)
+    assert sp.simplify(envelope-expected_envelope) == 0
 
 def G(z):
     if z <= 0: return 0.0
