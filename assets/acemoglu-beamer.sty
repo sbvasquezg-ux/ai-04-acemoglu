@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{acemoglu-beamer}[2026/09/06 Shared Beamer style]
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{amsmath,amssymb,booktabs}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\usetheme{default}
+\usecolortheme{seahorse}
+\definecolor{AKONavy}{HTML}{263657}
+\definecolor{AKOBlue}{HTML}{506A92}
+\definecolor{AKOGold}{HTML}{DCA54A}
+\definecolor{AKORed}{HTML}{B64C4C}
+\definecolor{AKOPaper}{HTML}{F7F7FA}
+\definecolor{AKOInk}{HTML}{1E2430}
+\setbeamercolor{normal text}{fg=AKOInk,bg=white}
+\setbeamercolor{structure}{fg=AKONavy}
+\setbeamercolor{frametitle}{fg=AKOInk,bg=AKOBlue!26}
+\setbeamercolor{block title}{fg=white,bg=AKONavy}
+\setbeamercolor{block body}{fg=AKOInk,bg=AKOBlue!9}
+\setbeamercolor{alerted text}{fg=AKORed}
+\setbeamerfont{title}{size=\LARGE,series=\bfseries}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{AKONavy}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{AKOBlue}$\bullet$}
+\setbeamertemplate{enumerate item}{\color{AKONavy}\insertenumlabel.}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamertemplate{frametitle}{\vspace{0.15em}\hspace{0.2em}\insertframetitle\strut}
+\setbeamertemplate{footline}{\leavevmode\hbox{\begin{beamercolorbox}[wd=.84\paperwidth,ht=2.6ex,dp=1.2ex,leftskip=1em]{author in head/foot}\color{AKOBlue}\insertshorttitle\end{beamercolorbox}\begin{beamercolorbox}[wd=.16\paperwidth,ht=2.6ex,dp=1.2ex,center]{date in head/foot}\color{AKONavy}\insertframenumber/\inserttotalframenumber\end{beamercolorbox}}}
+\setbeamersize{text margin left=0.72cm,text margin right=0.72cm}
+\hypersetup{colorlinks=true,urlcolor=AKOBlue,linkcolor=AKONavy}
+\newcommand{\paperref}{Acemoglu, Kong \& Ozdaglar (2026), NBER WP 34910}
+\newcommand{\RepoURL}{https://github.com/sbvasquezg-ux/ai-04-acemoglu}
+\newcommand{\sourcefoot}[1]{\vfill{\tiny\color{gray}Fuente: #1}}
+\newcommand{\keybox}[1]{\begin{beamercolorbox}[rounded=true,sep=0.7em]{block body}#1\end{beamercolorbox}}
