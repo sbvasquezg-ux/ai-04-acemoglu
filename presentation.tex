@@ -1,0 +1,73 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage{assets/acemoglu-beamer}
+\title[AKO (2026): auditoría]{AI, Human Cognition and Knowledge Collapse}
+\subtitle{La frontera entre ``colapso'' y conocimiento bajo}
+\author{Belén Vásquez}\institute{Universidad del Pacífico}\date{Septiembre de 2026}
+\begin{document}
+\begin{frame}[plain]\titlepage\vspace{-1em}\begin{center}\small\paperref\\[.4em]\href{\RepoURL}{\texttt{github.com/sbvasquezg-ux/ai-04-acemoglu}}\end{center}\end{frame}
+
+\begin{frame}{1 \textperiodcentered{} Dos aciertos complementarios, una externalidad}
+\small
+\textbf{Pregunta.} ¿Puede mejor consejo privado destruir el conocimiento público que lo vuelve útil?
+\[
+\max_{e\ge0}\ U=f(0,0)+G(X)\Delta_G+G(X)G(Y)\Delta_X-\frac{e^\alpha}{\alpha},
+\quad Y=\sigma^{-2}+\lambda_Ie+\tau_A.
+\]
+\[
+\underbrace{\Delta_XG(X)\lambda_Ig(Y)}_{MB(e;X,\tau_A)}=e^{\alpha-1}.
+\]
+\begin{itemize}\item $X$: precisión general heredada; $\tau_A$: precisión agéntica contextual.
+\item El esfuerzo produce señal privada y una señal pública que el agente atomístico no internaliza.
+\item \,\textbf{Assumption 1:} $\Delta_I=0$, $\Delta_X>0$ (el contexto solo no produce valor).
+\end{itemize}
+\sourcefoot{PDF 20-02-2026, §§3.1--3.5, pp. 8--15; ecuaciones (4)--(6).}
+\end{frame}
+
+\begin{frame}{2 \textperiodcentered{} Observación 1: interior y condicional}
+\small
+Con gaussianidad, $\lambda_I>0$, $\alpha>1$, $\Delta_I=0$, $\Delta_X>0$, $X,Y>0$:
+\[
+U_{eX}=\Delta_X\lambda_Ig(X)g(Y)>0,
+\qquad U_{e\tau_A}=\Delta_XG(X)\lambda_Ig'(Y)<0.
+\]
+\begin{block}{Qué hace cada supuesto}
+$g>0$ y $\Delta_X>0$ dan complementariedad; $g'<0$ da sustitución; costo convexo da esfuerzo único. Topkis implica $e_X>0$ y $e_{\tau_A}<0$ para $X>0$.
+\end{block}
+\keybox{\textbf{Cota olvidada en el enunciado estricto:} en $X=0$, $e^*=0$ para todo $\tau_A$ y $g(X)$ diverge; la derivada cruzada no es una desigualdad finita.}
+\sourcefoot{§§3.4--3.5, pp. 13--15; Observaciones 1--2 y nota 4.}
+\end{frame}
+
+\begin{frame}{3 \textperiodcentered{} Qué hice: separar beneficio directo y pérdida dinámica}
+\footnotesize
+\[
+\frac{\partial\bar U^+}{\partial\tau_A}=
+\underbrace{g(\bar Y_h)G(\bar X_h)\Delta_X}_{DE\ge0}
++\underbrace{\frac{\partial G(\bar X_h)}{\partial\tau_A}[\Delta_G+G(\bar Y_h)\Delta_X]}_{-IE\le0}.
+\]
+\begin{columns}[T,onlytextwidth]
+\column{.48\textwidth}\includegraphics[width=\linewidth]{extra/figures/welfare-accuracy.pdf}
+\column{.49\textwidth}
+\begin{itemize}\item Objeto: utilidad de cohorte representativa en steady state, no suma descontada.
+\item La versión de febrero demuestra aumento y luego \alert{caída estricta}, no mero aplanamiento.
+\item `sim.py`: CPO y derivada en SymPy; ejemplo numérico reproducible.
+\end{itemize}
+\end{columns}
+\sourcefoot{Ecuación (10), §4.3 y Proposiciones 10--11, pp. 24--27; cálculo propio.}
+\end{frame}
+
+\begin{frame}{4 \textperiodcentered{} Donde no le creí: cero no es robusto}
+\footnotesize
+\begin{columns}[T,onlytextwidth]
+\column{.61\textwidth}
+\begin{enumerate}\item El candidato inicial era falso: §§5.1--5.2 sí permiten agregación por IA y datos sintéticos.
+\item Si $\tau_{syn}>0$, entonces $F_{syn}(0)>0$: cero deja de ser fijo (Prop. 15).
+\item Si $\Delta_I>0$ o queda una masa de especialistas, hay retorno/esfuerzo positivo aun con $X=0$.
+\item Quispe--Xu: expansión persistente de lenguajes sin commits del agente es compatible con aprendizaje, canal ausente aquí.
+\end{enumerate}
+\keybox{\textbf{Veredicto.} Es defendible un estado de conocimiento bajo. El colapso exactamente a cero exige $\Delta_I=0$ y flujo autónomo nulo.}
+\column{.35\textwidth}
+\begin{center}\includegraphics[width=\linewidth,height=.54\textheight,keepaspectratio]{hand/manual-verification.jpg}\\[-.2em]\scriptsize Verificación manuscrita aportada por la estudiante.\end{center}
+\end{columns}
+\sourcefoot{§§5.1--5.2, pp. 30--32; Assumption 1, p. 9; hand/README.md.}
+\end{frame}
+\end{document}

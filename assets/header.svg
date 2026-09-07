@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 310" role="img" aria-labelledby="title desc">
+  <title id="title">AI, Human Cognition and Knowledge Collapse</title>
+  <desc id="desc">Banner abstracto en azul marino, azul y dorado.</desc>
+  <rect width="1200" height="310" fill="#F7F7FA"/>
+  <rect x="0" y="0" width="1200" height="22" fill="#263657"/>
+  <circle cx="1040" cy="155" r="112" fill="#506A92" opacity=".18"/>
+  <circle cx="1100" cy="94" r="46" fill="#DCA54A" opacity=".9"/>
+  <path d="M840 247 C920 90 1010 250 1180 78" fill="none" stroke="#B64C4C" stroke-width="8"/>
+  <path d="M55 231 H760" stroke="#506A92" stroke-width="3"/>
+  <text x="55" y="104" fill="#263657" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700">AI, Human Cognition</text>
+  <text x="55" y="166" fill="#263657" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700">and Knowledge Collapse</text>
+  <text x="58" y="215" fill="#1E2430" font-family="Arial,Helvetica,sans-serif" font-size="23">Acemoglu · Kong · Ozdaglar (2026) — auditoría crítica</text>
+  <text x="58" y="274" fill="#506A92" font-family="Arial,Helvetica,sans-serif" font-size="18">GENERAL KNOWLEDGE × CONTEXT-SPECIFIC KNOWLEDGE</text>
+</svg>
