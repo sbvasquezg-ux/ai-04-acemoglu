@@ -112,7 +112,8 @@ lualatex extra/presentation-long.tex
 │   ├── presentation-long.pdf
 │   └── presentation-long.tex
 ├── hand/
-│   └── README.md
+│   ├── README.md
+│   └── manual-verification.jpg
 ├── paper/
 │   ├── README.md
 │   └── w34910.pdf        # solo local; ignorado por git
@@ -127,7 +128,7 @@ lualatex extra/presentation-long.tex
 └── .gitignore
 ```
 
-La estudiante añade después su propia foto de la comprobación manuscrita en `hand/`; este repositorio no inventa esa evidencia.
+La comprobación manuscrita de la estudiante está en [`hand/manual-verification.jpg`](hand/manual-verification.jpg); el repositorio no inventa esa evidencia.
 
 ## Referencia
 
