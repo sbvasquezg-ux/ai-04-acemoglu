@@ -77,10 +77,22 @@ def numerical_counterexample():
     FIG.mkdir(parents=True,exist_ok=True)
     plt.rcParams.update({"font.family":"DejaVu Sans","font.size":11})
     fig,ax=plt.subplots(figsize=(7.4,4.2),constrained_layout=True)
-    ax.plot(taus,welfare,color="#263657",lw=2.5,label="bienestar estacionario")
-    ax.axvline(taus[k],color="#DCA54A",ls="--",label=rf"máximo $\tau_A={taus[k]:.2f}$")
+    ax.plot(taus,welfare,color="#263657",lw=2.5,label=r"$\bar U^+$: utilidad neta de largo plazo")
+    ax.axvspan(taus[0],taus[k],color="#506A92",alpha=.08)
+    ax.axvspan(taus[k],taus[-1],color="#B64C4C",alpha=.07)
+    ax.axvline(taus[k],color="#DCA54A",ls="--",label=rf"máximo: $\tau_A={taus[k]:.2f}$")
     ax.scatter([taus[i],taus[j]],[welfare[i],welfare[j]],color="#B64C4C",zorder=3)
-    ax.set(xlabel=r"Precisión agéntica $\tau_A$",ylabel=r"$\bar U^+$",title="Más precisión puede reducir el bienestar de largo plazo")
+    ax.annotate("efecto directo domina\nmejor consejo aumenta utilidad",
+                xy=(.45*taus[k], welfare[int(.45*k)]), xytext=(2.2,.36),
+                fontsize=9, color="#263657", ha="center",
+                arrowprops={"arrowstyle":"->","color":"#506A92"})
+    ax.annotate("efecto indirecto domina\nmenos esfuerzo reduce conocimiento general",
+                xy=(taus[j],welfare[j]), xytext=(10.4,.29),
+                fontsize=9, color="#B64C4C", ha="center",
+                arrowprops={"arrowstyle":"->","color":"#B64C4C"})
+    ax.set(xlabel=r"Eje horizontal: precisión de la recomendación de IA, $\tau_A$",
+           ylabel=r"Eje vertical: utilidad estacionaria, $\bar U^+$",
+           title="La precisión ayuda primero y perjudica cuando desplaza demasiado esfuerzo")
     ax.grid(alpha=.22); ax.spines[["top","right"]].set_visible(False); ax.legend(frameon=False)
     fig.savefig(FIG/"welfare-accuracy.pdf",bbox_inches="tight")
     fig.savefig(FIG/"welfare-accuracy.png",dpi=220,bbox_inches="tight")
