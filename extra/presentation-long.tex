@@ -1,10 +1,14 @@
 \documentclass[aspectratio=169,10pt]{beamer}
 \usepackage{../assets/acemoglu-beamer}
 \title[AKO (2026): auditoría]{AI, Human Cognition and Knowledge Collapse}
-\subtitle{Reconstrucción, bienestar y límites del colapso}\author{Belén Vásquez}\date{Septiembre de 2026}
+\subtitle{Cómo funciona el mecanismo, qué mide el bienestar y dónde falla la robustez}\author{Belén Vásquez}\date{Septiembre de 2026}
 \begin{document}
 \begin{frame}[plain]\titlepage\begin{center}\paperref\\\href{\RepoURL}{\texttt{github.com/sbvasquezg-ux/ai-04-acemoglu}}\end{center}\end{frame}
-\begin{frame}{Mapa del argumento}\begin{enumerate}\item Dos estados y dos señales humanas.\item Problema estático y Observación 1.\item Esfuerzo agregado alimenta $X_{t+1}$.\item Elasticidad alta permite estabilidad de cero.\item Bienestar enfrenta efecto directo e indirecto.\item Extensiones delimitan el significado de ``colapso''.\end{enumerate}\sourcefoot{Introducción y \S\S3--5, pp. 2--33.}\end{frame}
+\begin{frame}{Pregunta y ruta del argumento}
+\textbf{Pregunta central.} ¿Puede una IA que mejora las decisiones privadas terminar destruyendo el conocimiento público que hace valiosas esas decisiones?
+\begin{enumerate}\item Definir qué representan $X$, $Y$, $e$ y $\tau_A$.\item Mostrar por qué $X$ complementa el esfuerzo y $\tau_A$ lo sustituye.\item Seguir el efecto de menor esfuerzo sobre $X_{t+1}$.\item Separar el beneficio inmediato de la pérdida dinámica de bienestar.\item Probar qué parte del colapso depende de supuestos de frontera.\end{enumerate}
+\keybox{Objetivo de la presentación: reconstruir el resultado y defender una objeción de robustez, no resumir todo el paper.}
+\sourcefoot{Introducción y \S\S3--5, pp. 2--33.}\end{frame}
 \begin{frame}{La producción impone complementariedad extrema}
 \[
 \Delta_G=f(1,0)-f(0,0),\quad\Delta_I=f(0,1)-f(0,0),\quad
@@ -26,6 +30,10 @@ U=f(0,0)+G(X)\Delta_G+G(X)G(\sigma^{-2}+\lambda_Ie+\tau_A)\Delta_X-e^\alpha/\alp
 \[
 U_e=\Delta_XG(X)\lambda_Ig(Y)-e^{\alpha-1}=0.
 \]
+\begin{itemize}\item $e$: esfuerzo cognitivo elegido por la persona; $X$: precisión del conocimiento general heredado.
+\item $Y=\sigma^{-2}+\lambda_Ie+\tau_A$: precisión contextual total; $\tau_A$ es la parte que entrega la IA.
+\item $G(z)$ es la probabilidad de una decisión correcta; $e^\alpha/\alpha$ es el costo de pensar.
+\end{itemize}
 $g$ decrece y el costo marginal crece: máximo único. Para $X>0$ es interior; para $X=0$, $e^*=0$.
 \sourcefoot{Ecuaciones (4)--(6), §3.5 y nota 4, pp. 12--15.}\end{frame}
 \begin{frame}{Observación 1: prueba y frontera}
@@ -33,13 +41,14 @@ $g$ decrece y el costo marginal crece: máximo único. Para $X>0$ es interior; p
 U_{eX}=\Delta_X\lambda_Ig(X)g(Y)>0,\qquad
 U_{e\tau_A}=\Delta_XG(X)\lambda_Ig'(Y)<0.
 \]
-\begin{itemize}\item $g>0$: general knowledge eleva el retorno marginal.\item $g'<0$: precisión agéntica desplaza precisión humana.\item En $X=0$, la segunda desigualdad es cero y la primera derivada no es finita.\end{itemize}
+\begin{itemize}\item $U_{eX}>0$: $X$ y $e$ son complementos; más base común vuelve más productivo el esfuerzo individual.\item $U_{e\tau_A}<0$: $\tau_A$ y $e$ son sustitutos; la IA aporta la precisión que la persona obtendría pensando.\item Menos $e$ también reduce la señal que la sociedad agrega en $X_{t+1}$, efecto que el individuo no internaliza.\item En $X=0$, la segunda desigualdad es cero y la primera derivada no es finita.\end{itemize}
 \sourcefoot{Observación 1, §3.4, pp. 13--14; nota 4, p. 15.}\end{frame}
 \begin{frame}{Del esfuerzo al estado estacionario}
 \[
 X_{t+1}=F(X_t)=\left[\Sigma^2+(X_t+\lambda_GIe(X_t,\tau_A))^{-1}\right]^{-1}.
 \]
-Si $1/(\alpha-1)>4$, cero es localmente estable; si es menor que cuatro, es inestable. La igualdad no queda clasificada por Lemma 2.
+\begin{itemize}\item $E_t=I e_t$ es esfuerzo total; $\lambda_GE_t$ mide cuánta precisión pública produce la cohorte.\item $F(X_t)$ transforma el conocimiento actual y la nueva señal en el stock del próximo período.\item Si $1/(\alpha-1)>4$, el esfuerzo responde mucho a incentivos y cero es localmente estable; si es menor que cuatro, cero es inestable.\item La igualdad no queda clasificada por Lemma 2.
+\end{itemize}
 \sourcefoot{Ecuaciones (7)--(9), Lemma 2, pp. 16--18.}\end{frame}
 \begin{frame}{Colapso completo requiere más que Observación 1}
 Para elasticidad mayor que cuatro, puede haber tres steady states. Si $\tau_A>\tau_A^c$, queda solo $\bar X=0$ y es globalmente estable.
@@ -54,9 +63,12 @@ Para elasticidad mayor que cuatro, puede haber tres steady states. Si $\tau_A>\t
 \underbrace{g(\bar Y)G(\bar X)\Delta_X}_{DE\ge0}+
 \underbrace{G_{\tau_A}(\bar X)[\Delta_G+G(\bar Y)\Delta_X]}_{-IE\le0}.
 \]
+\begin{itemize}\item $DE$: mejor consejo aumenta hoy la probabilidad de elegir correctamente.\item $IE$: una mayor $\tau_A$ reduce esfuerzo, agregación y el stock estacionario $\bar X$; por eso $G_{\tau_A}(\bar X)<0$.\item El signo total depende de cuál de los dos canales domina.
+\end{itemize}
 \sourcefoot{Ecuación (10), §4.3, pp. 24--26.}\end{frame}
-\begin{frame}{La curva no se aplana: cae}
-\begin{columns}[T,onlytextwidth]\column{.55\textwidth}\includegraphics[width=\linewidth]{figures/welfare-accuracy.pdf}\column{.42\textwidth}\begin{itemize}\item Assumption 2 evita cambios múltiples de signo.\item Antes de $\tau_A^\star$: aumento estricto.\item Después: caída estricta.\item En régimen múltiple: salto a cero al colapso.\end{itemize}\end{columns}
+\begin{frame}{Lectura de la curva de bienestar}\small
+\begin{columns}[T,onlytextwidth]\column{.58\textwidth}\includegraphics[width=\linewidth]{figures/welfare-accuracy.pdf}\column{.39\textwidth}\begin{itemize}\item \textbf{Eje horizontal:} $\tau_A$, precisión de la recomendación agéntica.\item \textbf{Eje vertical:} $\bar U^+$, utilidad neta en el estado estacionario alto.\item Antes de $\tau_A^\star$ domina el beneficio directo.\item Después domina la pérdida de conocimiento general y la utilidad cae estrictamente.\item Assumption 2 evita cambios múltiples de signo.\end{itemize}\end{columns}
+\keybox{La figura no dice que ``la IA empeora el bienestar'' en general. Dice que, dentro del modelo y a partir de un umbral, una mejora marginal de precisión destruye más valor dinámico del que crea hoy.}
 \sourcefoot{Proposiciones 10--11, pp. 26--27; simulación propia.}\end{frame}
 \begin{frame}{Las seis relajaciones: qué sí está en el PDF}
 \scriptsize
